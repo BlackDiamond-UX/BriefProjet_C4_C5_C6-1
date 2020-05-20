@@ -91,8 +91,8 @@ MariaDB [boutique]> SELECT Name, Price FROM products;
 | Toner cartridge |    66 |
 | DVD burner      |   180 |
 +-----------------+-------+
-7/ Sélectionner le nom des produits dont le prix est inférieur ou égal à 200 $.
-MariaDB [boutique]> SELECT Name FROM products WHERE Price <= 200;
+`7/ Sélectionner le nom des produits dont le prix est inférieur ou égal à 200 $.
+MariaDB [boutique]> SELECT Name FROM products WHERE Price <= 200;`
 +-----------------+
 | Name            |
 +-----------------+
