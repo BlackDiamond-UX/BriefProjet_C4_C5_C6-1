@@ -4,6 +4,7 @@
  CREATE DATABESE boutique
 ```
 | Database           |
+| :----------------- | 
 | boutique           |
 | information_schema |
 | mysql              |
@@ -27,14 +28,13 @@ foreign key(Manufacturer_code) references manufacturers(Code)
 ```
 ## 3/Insérer dans le tableau Manufacturers les valeurs :
 ```sql
-MariaDB [boutique]> INSERT INTO manufacturers (Name) VALUES ('Sony'), 
-('Creative Labs'), ('Hewlett-Packard'), 
-('Iomega'), ('Fujitsu'), ('Winchester');
+MariaDB [boutique]> INSERT INTO manufacturers (Name) VALUES ('Sony'), ('Creative Labs'), ('Hewlett-Packard'), ('Iomega'), ('Fujitsu'), ('Winchester');
 ```
+```sql
 SELECT * FROM `manufacturers`;
-
+```
 | Code | Name            |
-
+| :---:| :-------------- | 
 |    1 | Sony            |
 |    2 | Creative Labs   |
 |    3 | Hewlett-Packard |
@@ -60,7 +60,7 @@ MariaDB [boutique]> INSERT INTO products (Name, Price, Manufacturer_code) VALUES
 MariaDB [boutique]> SELECT*FROM `products`;
 
 | Code | Name            | Price | Manufacturer_code |
-
+| :--: | :---------------| :---: | :---------------: | 
 |    1 | Hard drive      |   240 |                 5 |
 |    2 | Memory          |   120 |                 6 |
 |    3 | ZIP drive       |   150 |                 4 |
@@ -78,7 +78,7 @@ MariaDB [boutique]> SELECT*FROM `products`;
 MariaDB [boutique]> SELECT Name, Price FROM products;
 ```
 | Name            | Price |
-
+| :-------------- | :---: | 
 | Hard drive      |   240 |
 | Memory          |   120 |
 | ZIP drive       |   150 |
@@ -95,7 +95,7 @@ MariaDB [boutique]> SELECT Name, Price FROM products;
 MariaDB [boutique]> SELECT Name FROM products WHERE Price <= 200;
 ```
 | Name            |
-
+| :-------------- | 
 | Memory          |
 | ZIP drive       |
 | Floppy disk     |
@@ -109,7 +109,7 @@ MariaDB [boutique]> SELECT Name FROM products WHERE Price <= 200;
 MariaDB [boutique]> SELECT * FROM products WHERE Price between 60 and 120;
 ```
 | Code | Name            | Price | Manufacturer_code |
-
+| :--: | :-------------- | :---: | :---------------- | 
 |    2 | Memory          |   120 |                 6 |
 |    7 | CD drive        |    90 |                 2 |
 |    9 | Toner cartridge |    66 |                 3 |
@@ -120,7 +120,7 @@ MariaDB [boutique]> SELECT Price*100  AS Price_Cents, Name FROM products ;
 ```
 
 | Price_Cents | Name            |
-
+| :---------: | :-------------- | 
 |       24000 | Hard drive      |
 |       12000 | Memory          |
 |       15000 | ZIP drive       |
@@ -137,6 +137,7 @@ MariaDB [boutique]> SELECT Price*100  AS Price_Cents, Name FROM products ;
 MariaDB [boutique]> SELECT AVG(Price) FROM products ;
 ```
 | AVG(Price) |
+| :--------: | 
 |      154.1 |
 
 ## 11/Calculer le prix moyen de tous les produits dont le code fabricant est égal à 2.
@@ -144,6 +145,7 @@ MariaDB [boutique]> SELECT AVG(Price) FROM products ;
 MariaDB [boutique]> SELECT AVG(Price) FROM products WHERE Manufacturer_code = 2;
 ```
 | AVG(Price) |
+| :--------: | 
 |        150 |
 
 ## 12/ Calculer le nombre de produits dont le prix est supérieur ou égal à 180 dollars.
@@ -151,6 +153,7 @@ MariaDB [boutique]> SELECT AVG(Price) FROM products WHERE Manufacturer_code = 2;
 MariaDB [boutique]> SELECT count(*) FROM products WHERE price >= 180;
 ```
 | count(*) |
+| :------: | 
 |        5 |
 
 ## 13) Sélectionner le nom et le prix de tous les produits dont le prix est supérieur ou égal à 180 dollars, et trier d'abord par prix (par ordre décroissant), puis par nom (par ordre croissant).
@@ -158,6 +161,7 @@ MariaDB [boutique]> SELECT count(*) FROM products WHERE price >= 180;
 MariaDB [boutique]> SELECT Name , Price FROM products WHERE price >= 180 order by Price desc,Name Asc;
 ```
 | Name       | Price |
+| :--------- | :---: | 
 | Printer    |   270 |
 | Hard drive |   240 |
 | Monitor    |   240 |
@@ -170,7 +174,7 @@ MariaDB [boutique]> SELECT * FROM products INNER JOIN manufacturers on products.
 ```
 
 | Code | Name            | Price | Manufacturer_code | Code | Name            |
-
+| :--: | :-------------- | :---: | :---------------: | :--: | :-------------- | 
 |    1 | Hard drive      |   240 |                 5 |    5 | Fujitsu         |
 |    2 | Memory          |   120 |                 6 |    6 | Winchester      |
 |    3 | ZIP drive       |   150 |                 4 |    4 | Iomega          |
@@ -188,7 +192,7 @@ MariaDB [boutique]> SELECT products.Name, products.Price, manufacturers.Name FRO
 ```
 
 | Name            | Price | Name            |
-
+| :-------------- | :---: | :-------------- | 
 | Hard drive      |   240 | Fujitsu         |
 | Memory          |   120 | Winchester      |
 | ZIP drive       |   150 | Iomega          |
@@ -206,7 +210,7 @@ MariaDB [boutique]> SELECT  AVG(Price), Manufacturer_code FROM products group by
 ```
 
 | AVG(Price) | Manufacturer_code |
-
+| :--------: | :---------------: |  
 |        240 |                 1 |
 |        150 |                 2 |
 |        168 |                 3 |
@@ -220,7 +224,7 @@ MariaDB [boutique]> SELECT  AVG(Price), manufacturers.Name FROM products INNER J
 ```
 
 | AVG(Price) | Name            |
-
+| :--------: | :-------------- | 
 |        240 | Sony            |
 |        150 | Creative Labs   |
 |        168 | Hewlett-Packard |
@@ -234,7 +238,7 @@ MariaDB [boutique]> SELECT  AVG(Price), manufacturers.Name FROM products INNER J
 ```
 
 | AVG(Price) | Name            |
-
+| :--------: | :-------------- | 
 |        240 | Sony            |
 |        150 | Creative Labs   |
 |        168 | Hewlett-Packard |
@@ -247,7 +251,7 @@ MariaDB [boutique]> SELECT Name, Price FROM products WHERE Price = (SELECT min(P
 ```
 
 | Name        | Price |
-
+| :---------- | :---: | 
 | Floppy disk |     5 |
 
 ## 20) Sélectionnez le nom de chaque fabricant ainsi que le nom et le prix de son produit le plus cher.
@@ -256,7 +260,7 @@ MariaDB [boutique]>  SELECT M.name, P.Name, P.Price FROM products P join manufac
 ```
 
 | name            | Name       | Price |
-
+| :-------------- | :--------- | :---: | 
 | Sony            | Monitor    |   240 |
 | Creative Labs   | DVD drive  |   180 |
 | Hewlett-Packard | Printer    |   270 |
@@ -282,6 +286,7 @@ MariaDB [boutique]> UPDATE products SET Price = Price - (Price*0.1);
 MariaDB [boutique]> UPDATE products SET Price = Price*0.9 WHERE Price >= 120;
 ```
 | Code | Name            | Price  | Manufacturer_code |
+| :--: | :-------------- | :----: | :---------------: | 
 |    1 | Hard drive      | 174.96 |                 5 |
 |    2 | Memory          |   97.2 |                 6 |
 |    3 | ZIP drive       | 109.35 |                 4 |
@@ -293,35 +298,6 @@ MariaDB [boutique]> UPDATE products SET Price = Price*0.9 WHERE Price >= 120;
 |    9 | Toner cartridge |  53.46 |                 3 |
 |   10 | DVD burner      | 131.22 |                 2 |
 |   11 | Loudspeakers    |   56.7 |                 2 |
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
